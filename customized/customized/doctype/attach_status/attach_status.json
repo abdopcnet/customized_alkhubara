@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:status_name",
+ "creation": "2025-01-19 17:37:52.254532",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status_name",
+  "status_name_copy"
+ ],
+ "fields": [
+  {
+   "fieldname": "status_name",
+   "fieldtype": "Data",
+   "label": "Status Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "status_name_copy",
+   "fieldtype": "Color",
+   "label": "Status Name Copy"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-19 17:38:29.103999",
+ "modified_by": "Administrator",
+ "module": "customized",
+ "name": "Attach Status",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

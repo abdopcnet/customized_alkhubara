@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "autoname": "field:attach_type",
+ "creation": "2024-12-30 13:45:31.723308",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "column_break_yalp",
+  "attach_type"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "attach_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "attach type",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_yalp",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-31 00:41:36.976584",
+ "modified_by": "Administrator",
+ "module": "customized",
+ "name": "Attach Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "attach_type",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "attach_type"
+}
