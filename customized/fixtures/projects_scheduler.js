@@ -1,5 +1,3 @@
-// Frontend logging: console.log('[projects_scheduler.js] method: function_name')
-
 const root = root_element;
 
 // Customer link control
@@ -154,14 +152,16 @@ function render(rows) {
 }
 
 async function load() {
+  // Removed mp_only_due checkbox logic
+  const only_due = 0;
   // Get value from the control if possible, or input
   const val = customer_control ? customer_control.get_value() : customer_input.value;
   const customer = (val || "").trim();
 
   try {
     const r = await frappe.call({
-      method: "customized.customer.get_scheduled_projects_data",
-      args: { customer: customer || null },
+      method: "monthly_projects_dashboard",
+      args: { action: "get", customer, only_due },
     });
 
     DATA = r.message || [];
@@ -171,7 +171,6 @@ async function load() {
     // Fallback if method fails
     root.querySelector("#mp_stat").textContent = "خطأ في التحميل";
   }
-  console.log("[projects_scheduler.js] method: load");
 }
 
 root.querySelector("#mp_refresh").onclick = load;
@@ -179,28 +178,46 @@ searchInput.oninput = () => render(DATA);
 
 root.querySelector("#mp_run_all").onclick = () => {
   frappe.confirm("هل أنت متأكد من تشغيل جميع المشاريع المستحقة الآن؟", () => {
-    const customer = customer_control ? customer_control.get_value() : customer_input.value;
-    if (customer) {
-      frappe.call({
-        method: "customized.customer.run_monthly_projects_for_customer",
-        args: { customer: customer },
-        callback: (r) => {
-          const m = r.message || {};
-          frappe.msgprint(`تمت العملية بنجاح: <br> تم إنشاء ${m.created_projects || 0} مشروع`);
-          load();
-        },
-      });
-    } else {
-      frappe.msgprint(__("يرجى اختيار عميل أولاً"));
-    }
+    frappe.call({
+      method: "monthly_projects_run_all_due",
+      callback: (r) => {
+        const m = r.message || {};
+        frappe.msgprint(
+          `تمت العملية بنجاح: <br> تم إنشاء ${m.created_projects || 0} مشروع <br> تم تحديث ${
+            m.updated_customers || 0
+          } عميل`
+        );
+        load();
+      },
+    });
   });
-  console.log("[projects_scheduler.js] method: mp_run_all onclick");
 };
 
 root.querySelector("#mp_add").onclick = () => {
-  frappe.set_route("Form", "Customer", "new");
-  frappe.msgprint(__("يرجى إضافة الجدول من نموذج العميل"));
-  console.log("[projects_scheduler.js] method: mp_add onclick");
+  const d = new frappe.ui.Dialog({
+    title: "إضافة جدول مشروع جديد",
+    fields: [
+      { fieldtype: "Link", fieldname: "customer", label: "العميل", options: "Customer", reqd: 1 },
+      { fieldtype: "Link", fieldname: "template", label: "قالب المشروع", options: "Project Template", reqd: 1 },
+      { fieldtype: "Date", fieldname: "creation_date", label: "تاريخ البداية", default: frappe.datetime.nowdate() },
+      { fieldtype: "Int", fieldname: "freq_months", label: "تكرار كل (أشهر)", default: 3, reqd: 1 },
+      { fieldtype: "Int", fieldname: "day_of_month", label: "يوم الاستحقاق في الشهر", default: 1, reqd: 1 },
+      { fieldtype: "Small Text", fieldname: "notes", label: "ملاحظات" },
+    ],
+    primary_action_label: "حفظ البيانات",
+    primary_action(values) {
+      frappe.call({
+        method: "monthly_projects_dashboard",
+        args: { action: "add", ...values },
+        callback() {
+          frappe.msgprint({ title: "تم بنجاح", message: "تمت إضافة الجدول الجديد بنجاح", indicator: "green" });
+          d.hide();
+          load();
+        },
+      });
+    },
+  });
+  d.show();
 };
 
 // أول تحميل + تحديث تلقائي كل 5 دقائق
