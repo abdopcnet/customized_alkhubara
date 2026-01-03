@@ -1,0 +1,244 @@
+/* Modern Reset & Base */
+.mp-wrap {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  padding: 24px;
+  background: #f8fafc; /* Slate 50 */
+  min-height: calc(100vh - 180px);
+  color: #334155; /* Slate 700 */
+}
+
+.mp-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  border: 1px solid #e2e8f0; /* Slate 200 */
+}
+
+/* Header Section */
+.mp-top {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 24px;
+}
+
+.mp-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b; /* Slate 500 */
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Buttons */
+.mp-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-right: auto; /* Push to left in RTL */
+}
+
+.mp-btns .btn {
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: none;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+.btn-success {
+  background-color: #10b981;
+  color: white;
+}
+.btn-success:hover {
+  background-color: #059669;
+}
+.btn-default {
+  background-color: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1 !important;
+}
+.btn-default:hover {
+  background-color: #f8fafc;
+}
+
+/* KPI Cards */
+.mp-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mp-kpi {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mp-kpi .v {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a; /* Slate 900 */
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.mp-kpi .t {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Search Bar */
+.mp-search {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.mp-search input.form-control {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.2s;
+}
+
+.mp-search input.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.mp-stat {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Grid List Replaced with Table */
+.mp-table-wrap {
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.mp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.mp-table th {
+  background: #f8fafc;
+  padding: 16px;
+  text-align: right;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.mp-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.mp-table tr:last-child td {
+  border-bottom: none;
+}
+
+.mp-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* Status Cell */
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mp-notes-cell {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #94a3b8;
+}
+
+/* Badges */
+.badge {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.b-over {
+  background: #fef2f2;
+  color: #ef4444;
+}
+.b-due {
+  background: #fffbeb;
+  color: #b45309;
+}
+.b-ok {
+  background: #f0fdf4;
+  color: #15803d;
+}
+.b-info {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+  .mp-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .mp-btns {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .mp-btns .btn {
+    flex: 1;
+    text-align: center;
+  }
+  .mp-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
