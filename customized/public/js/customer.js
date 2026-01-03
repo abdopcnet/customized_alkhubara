@@ -2,7 +2,7 @@
 
 frappe.ui.form.on("Customer", {
   custom_create_projects: function (frm) {
-    frappe.msgprint(__("جاري مراجعة المشاريع المستحقة..."));
+    frappe.msgprint(__("Checking due projects..."));
 
     frappe.call({
       method: "customized.customer.run_monthly_projects_for_customer",
