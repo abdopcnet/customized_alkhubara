@@ -1,6 +1,6 @@
 ## customized
 
-![Version](https://img.shields.io/badge/version-17.11.2025-blue)
+![Version](https://img.shields.io/badge/version-3.1.2026-blue)
 
 
 customized Docs
